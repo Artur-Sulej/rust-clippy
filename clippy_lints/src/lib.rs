@@ -106,6 +106,7 @@ mod copy_iterator;
 mod crate_in_macro_def;
 mod create_dir;
 mod dbg_macro;
+mod decimal_bit_mask;
 mod default;
 mod default_constructed_unit_structs;
 mod default_instead_of_iter_empty;
@@ -982,5 +983,6 @@ pub fn register_lints(store: &mut rustc_lint::LintStore, conf: &'static Conf) {
     store.register_late_pass(move |_| Box::new(non_std_lazy_statics::NonStdLazyStatic::new(conf)));
     store.register_late_pass(|_| Box::new(manual_option_as_slice::ManualOptionAsSlice::new(conf)));
     store.register_late_pass(|_| Box::new(single_option_map::SingleOptionMap));
+    store.register_late_pass(|_| Box::new(decimal_bit_mask::DecimalBitMask));
     // add lints here, do not remove this comment, it's used in `new_lint`
 }
