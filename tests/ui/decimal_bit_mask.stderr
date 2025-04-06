@@ -1,83 +1,77 @@
 error: Decimal bit mask
   --> tests/ui/decimal_bit_mask.rs:7:5
    |
-LL |     x & 128;
-   |     ^^^^^^^
+LL |     x & 99;
+   |     ^^^^^^
    |
    = note: `-D clippy::decimal-bit-mask` implied by `-D warnings`
    = help: to override `-D warnings` add `#[allow(clippy::decimal_bit_mask)]`
 
 error: Decimal bit mask
-  --> tests/ui/decimal_bit_mask.rs:7:5
-   |
-LL |     x & 128;
-   |     ^^^^^^^
-   |
-   = note: duplicate diagnostic emitted due to `-Z deduplicate-diagnostics=no`
-
-error: Decimal bit mask
   --> tests/ui/decimal_bit_mask.rs:8:5
    |
-LL |     x | 1024;
-   |     ^^^^^^^^
-
-error: Decimal bit mask
-  --> tests/ui/decimal_bit_mask.rs:8:5
-   |
-LL |     x | 1024;
-   |     ^^^^^^^^
-   |
-   = note: duplicate diagnostic emitted due to `-Z deduplicate-diagnostics=no`
+LL |     x | 99;
+   |     ^^^^^^
 
 error: Decimal bit mask
   --> tests/ui/decimal_bit_mask.rs:9:5
    |
-LL |     x ^ 1024;
-   |     ^^^^^^^^
-
-error: Decimal bit mask
-  --> tests/ui/decimal_bit_mask.rs:9:5
-   |
-LL |     x ^ 1024;
-   |     ^^^^^^^^
-   |
-   = note: duplicate diagnostic emitted due to `-Z deduplicate-diagnostics=no`
+LL |     x ^ 99;
+   |     ^^^^^^
 
 error: Decimal bit mask
   --> tests/ui/decimal_bit_mask.rs:10:5
    |
-LL |     x &= 1;
-   |     ^^^^^^
+LL |     x &= 99;
+   |     ^^^^^^^
 
 error: Decimal bit mask
   --> tests/ui/decimal_bit_mask.rs:11:5
    |
-LL |     x |= 2;
-   |     ^^^^^^
+LL |     x |= 99;
+   |     ^^^^^^^
 
 error: Decimal bit mask
   --> tests/ui/decimal_bit_mask.rs:12:5
    |
-LL |     x ^= 3;
-   |     ^^^^^^
+LL |     x ^= 99;
+   |     ^^^^^^^
 
 error: Decimal bit mask
-  --> tests/ui/decimal_bit_mask.rs:16:5
+  --> tests/ui/decimal_bit_mask.rs:37:5
    |
-LL |     x & 0b1100;
-   |     ^^^^^^^^^^
+LL |     0b1010 & 99;
+   |     ^^^^^^^^^^^
 
 error: Decimal bit mask
-  --> tests/ui/decimal_bit_mask.rs:17:5
+  --> tests/ui/decimal_bit_mask.rs:38:5
    |
-LL |     x | 0b1100;
-   |     ^^^^^^^^^^
+LL |     0b1010 | 99;
+   |     ^^^^^^^^^^^
 
 error: Decimal bit mask
-  --> tests/ui/decimal_bit_mask.rs:18:5
+  --> tests/ui/decimal_bit_mask.rs:39:5
    |
-LL |     x ^ 0b1100;
-   |     ^^^^^^^^^^
+LL |     0b1010 ^ 99;
+   |     ^^^^^^^^^^^
+
+error: Decimal bit mask
+  --> tests/ui/decimal_bit_mask.rs:42:5
+   |
+LL |     99 & 0b1010;
+   |     ^^^^^^^^^^^
+
+error: Decimal bit mask
+  --> tests/ui/decimal_bit_mask.rs:43:5
+   |
+LL |     99 | 0b1010;
+   |     ^^^^^^^^^^^
+
+error: Decimal bit mask
+  --> tests/ui/decimal_bit_mask.rs:44:5
+   |
+LL |     99 ^ 0b1010;
+   |     ^^^^^^^^^^^
 
 error: aborting due to 12 previous errors
 

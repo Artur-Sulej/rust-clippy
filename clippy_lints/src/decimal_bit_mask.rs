@@ -46,7 +46,7 @@ impl<'tcx> LateLintPass<'tcx> for DecimalBitMask {
         ) = &e.kind
         {
             if let ExprKind::Lit(_) = kind1 {
-                if let Some(mut snippet) = snippet_opt(cx, *span1)
+                if let Some(snippet) = snippet_opt(cx, *span1)
                     && !snippet.starts_with("0b")
                     && !snippet.starts_with("0x")
                 {
@@ -55,15 +55,13 @@ impl<'tcx> LateLintPass<'tcx> for DecimalBitMask {
             }
 
             if let ExprKind::Lit(_) = kind2 {
-                if let Some(mut snippet) = snippet_opt(cx, *span2)
+                if let Some(snippet) = snippet_opt(cx, *span2)
                     && !snippet.starts_with("0b")
                     && !snippet.starts_with("0x")
                 {
                     span_lint(cx, DECIMAL_BIT_MASK, e.span, "Decimal bit mask");
                 }
             }
-
-            span_lint(cx, DECIMAL_BIT_MASK, e.span, "Decimal bit mask");
         }
         if let ExprKind::AssignOp(
             Spanned {
