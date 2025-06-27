@@ -7,16 +7,19 @@ use rustc_span::source_map::Spanned;
 
 declare_clippy_lint! {
     /// ### What it does
+    /// Checks for decimal literals used as bit masks in bitwise operations.
     ///
     /// ### Why is this bad?
+    /// Using decimal literals for bit masks can make the code less readable.
+    /// Binary or hexadecimal literals make the bit pattern more explicit.
     ///
     /// ### Example
-    /// ```no_run
-    /// // example code where clippy issues a warning
+    /// ```rust,no_run
+    /// let x = 5 & 0b11111111;  // or 0xff
     /// ```
     /// Use instead:
-    /// ```no_run
-    /// // example code which does not raise clippy warning
+    /// ```rust,no_run
+    /// let x = 5 & 0b11111111;  // or 0xff
     /// ```
     #[clippy::version = "1.87.0"]
     pub DECIMAL_BIT_MASK,
@@ -45,22 +48,30 @@ impl<'tcx> LateLintPass<'tcx> for DecimalBitMask {
             },
         ) = &e.kind
         {
-            if let ExprKind::Lit(_) = kind1 {
-                if let Some(snippet) = snippet_opt(cx, *span1)
-                    && !snippet.starts_with("0b")
-                    && !snippet.starts_with("0x")
-                {
-                    span_lint(cx, DECIMAL_BIT_MASK, e.span, "Decimal bit mask");
-                }
+            if let ExprKind::Lit(_) = kind1
+                && let Some(snippet) = snippet_opt(cx, *span1)
+                && !snippet.starts_with("0b")
+                && !snippet.starts_with("0x")
+            {
+                span_lint(
+                    cx,
+                    DECIMAL_BIT_MASK,
+                    e.span,
+                    "Using decimal literal for bit mask. Consider using binary (0b...) or hexadecimal (0x...) notation for better readability.",
+                );
             }
 
-            if let ExprKind::Lit(_) = kind2 {
-                if let Some(snippet) = snippet_opt(cx, *span2)
-                    && !snippet.starts_with("0b")
-                    && !snippet.starts_with("0x")
-                {
-                    span_lint(cx, DECIMAL_BIT_MASK, e.span, "Decimal bit mask");
-                }
+            if let ExprKind::Lit(_) = kind2
+                && let Some(snippet) = snippet_opt(cx, *span2)
+                && !snippet.starts_with("0b")
+                && !snippet.starts_with("0x")
+            {
+                span_lint(
+                    cx,
+                    DECIMAL_BIT_MASK,
+                    e.span,
+                    "Using decimal literal for bit mask. Consider using binary (0b...) or hexadecimal (0x...) notation for better readability.",
+                );
             }
         }
         if let ExprKind::AssignOp(
@@ -80,7 +91,12 @@ impl<'tcx> LateLintPass<'tcx> for DecimalBitMask {
                 && !snippet.starts_with("0b")
                 && !snippet.starts_with("0x")
             {
-                span_lint(cx, DECIMAL_BIT_MASK, e.span, "Decimal bit mask");
+                span_lint(
+                    cx,
+                    DECIMAL_BIT_MASK,
+                    e.span,
+                    "Using decimal literal for bit mask. Consider using binary (0b...) or hexadecimal (0x...) notation for better readability.",
+                );
             }
         }
     }
