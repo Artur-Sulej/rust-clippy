@@ -39,9 +39,9 @@ fn main() {
     0b1010 ^ 99;    //~ decimal_bit_mask
 
     // two literals, bitwise op, decimal – bad
-    99 & 0b1010;
-    99 | 0b1010;
-    99 ^ 0b1010;
+    99 & 0b1010;    //~ decimal_bit_mask
+    99 | 0b1010;    //~ decimal_bit_mask
+    99 ^ 0b1010;    //~ decimal_bit_mask
 
     // no literals – good
     let y = 0;
