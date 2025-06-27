@@ -4,12 +4,18 @@
 fn main() {
     let mut x = 0;
     // one literal, bitwise op, decimal – bad
-    x & 99;    //~ decimal_bit_mask
-    x | 99;    //~ decimal_bit_mask
-    x ^ 99;    //~ decimal_bit_mask
-    x &= 99;   //~ decimal_bit_mask
-    x |= 99;   //~ decimal_bit_mask
-    x ^= 99;   //~ decimal_bit_mask
+    x & 99;
+    //~^ decimal_bit_mask
+    x | 99;
+    //~^ decimal_bit_mask
+    x ^ 99;
+    //~^ decimal_bit_mask
+    x &= 99;
+    //~^ decimal_bit_mask
+    x |= 99;
+    //~^ decimal_bit_mask
+    x ^= 99;
+    //~^ decimal_bit_mask
 
     // one literal, num op, decimal – good
     x += 99;
@@ -34,14 +40,20 @@ fn main() {
     x %= 0b1010;
 
     // two literals, bitwise op, decimal – bad
-    0b1010 & 99;    //~ decimal_bit_mask
-    0b1010 | 99;    //~ decimal_bit_mask
-    0b1010 ^ 99;    //~ decimal_bit_mask
+    0b1010 & 99;
+    //~^ decimal_bit_mask
+    0b1010 | 99;
+    //~^ decimal_bit_mask
+    0b1010 ^ 99;
+    //~^ decimal_bit_mask
 
     // two literals, bitwise op, decimal – bad
-    99 & 0b1010;    //~ decimal_bit_mask
-    99 | 0b1010;    //~ decimal_bit_mask
-    99 ^ 0b1010;    //~ decimal_bit_mask
+    99 & 0b1010;
+    //~^ decimal_bit_mask
+    99 | 0b1010;
+    //~^ decimal_bit_mask
+    99 ^ 0b1010;
+    //~^ decimal_bit_mask
 
     // no literals – good
     let y = 0;
