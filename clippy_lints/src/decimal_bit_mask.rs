@@ -65,7 +65,7 @@ impl<'tcx> LateLintPass<'tcx> for DecimalBitMask {
         }
         if let ExprKind::AssignOp(
             Spanned {
-                node: BinOpKind::BitAnd | BinOpKind::BitOr | BinOpKind::BitXor,
+                node: AssignOpKind::BitAndAssign | AssignOpKind::BitOrAssign | AssignOpKind::BitXorAssign,
                 ..
             },
             _,
